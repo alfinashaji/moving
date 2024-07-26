@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #box {
+            height: 30px;
+            width: 30px;
+            border: 3px solid black;
+            border-radius: 50%;
+            position: absolute;
+            transition: all;
+            pointer-events: none; /* Prevent the box from capturing mouse events */
+        }
+        #box1 {
+            height: 30px;
+            width: 30px;
+            border: 3px solid black;
+            border-radius: 50%;
+            position: absolute;
+            transition: all;
+            pointer-events: none; /* Prevent the box from capturing mouse events */
+        }
+
+        body {
+            cursor: none; 
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var box = document.getElementById("box");
+        var colorhex=["#98086c","#086c98","#340898","#ff445d","#ffbbee","#ff6b7f","#f2889e"]
+        var colorIndex = 0;
+        var timeoutId = null; // Add a variable to store the timeout ID
+
+        document.addEventListener("mousemove", (event) => {
+            box = document.createElement("div");
+            box.setAttribute("id", "box1");
+            document.body.appendChild(box);
+            box.style.borderColor = colorhex[colorIndex];
+            colorIndex++
+            if (colorIndex == colorhex.length) {
+                colorIndex = 0;
+            }
+       
+
+            box.style.left = event.clientX + 'px';
+            box.style.top = event.clientY + 'px';
+            setTimeout(() => {
+                document.getElementById("box1").remove();
+            },150);
+        });
+    </script>
+</body>
+</html>
